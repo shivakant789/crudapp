@@ -1,0 +1,63 @@
+{% load static %}
+
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Crud App with postgresql</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"/>
+</head>
+<body>
+<center>
+    <h1>CRUD APPICATION WITH POSTGRES</h1>
+
+     <form method="POST" action="/Multiplesearchemp">
+         {% csrf_token %}
+    <table border="1" class="blueTable">
+        <td><input type="radio" value="M" name="gender">Male |
+            <input type="radio" value="F" name="gender">FeMale </td>
+        <td><select name="occupation">
+            <option select disabled>--Select Occupation--</option>
+            <option value="Manager">Manager</option>
+            <option value="HR">HR</option>
+            <option value="Sales">Sales Manager</option>
+        </select> </td>
+        <td><input type="submit" value="Search" class="button button1"> </td>
+       <tr> <td><a href="{% url 'sortemp' %}" style="color:green" class="button button1">Sort By Name</a> </td>
+           <td><a href="{% url 'sortsal' %}" style="color:green" class="button button1">Sort By Salary</a> </td>
+           <td><a href="{% url 'refresh' %}" style="color:green" class="button button1">Refresh</a> </td>
+</tr>
+    </table>
+        </form>
+    <hr/>
+    <a href="{% url 'Insertemp' %}" class="button button1">Create New Employee</a>
+    <table border="1" class="blueTable">
+    <tr>
+        <th>Employee ID</th>
+        <th>Employee name</th>
+        <th>Email</th>
+        <th>occupation</th>
+        <th>empsal</th>
+        <th>Gender</th>
+        <th>address</th>
+    </tr>
+    {% for result in data %}
+    <tr>
+        <td>{{result.id}}</td>
+        <td>{{result.empname}}</td>
+        <td>{{result.email}}</td>
+        <td>{{result.occupation}}</td>
+        <td>{{result.empsal}}</td>
+        <td>{{result.gender}}</td>
+        <td>{{result.address}}</td>
+        <td><a href="Edit/{{result.id}}" class="button button1">Edit</a></td>
+        <td><a href="Delete/{{result.id}}" onclick="return confirmation('Are You Sure want to delete?')" class="button button1">Delete</a></td>
+</tr>
+    {% endfor %}
+</table>
+
+
+
+</center>
+</body>
+</html>

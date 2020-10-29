@@ -1,0 +1,39 @@
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"/>
+</head>
+<body>
+<center>
+ <h1>Search Results</h1>
+
+<table border="1" class="blueTable">
+    <tr>
+        <th>Employee ID</th>
+        <th>Employee name</th>
+        <th>Email</th>
+        <th>occupation</th>
+        <th>empsal</th>
+        <th>Gender</th>
+        <th>address</th>
+    </tr>
+    {% for result in data1 %}
+    <tr>
+        <td>{{result.id}}</td>
+        <td>{{result.empname}}</td>
+        <td>{{result.email}}</td>
+        <td>{{result.occupation}}</td>
+        <td>{{result.empsal}}</td>
+        <td>{{result.gender}}</td>
+        <td>{{result.address}}</td>
+
+</tr>
+    {% endfor %}
+</table>
+<td><a href="{% url 'showemp' %}" class="button button1">Home Page</a></td>
+    </center>
+</body>
+</html>
